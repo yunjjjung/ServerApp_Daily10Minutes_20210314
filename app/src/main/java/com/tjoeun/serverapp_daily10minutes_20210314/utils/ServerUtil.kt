@@ -71,6 +71,20 @@ class ServerUtil {
                     val jsonObj = JSONObject(bodyString)
                     Log.d("서버응답본문", jsonObj.toString())
 
+//                    연습 : code 에 적힌 숫자 (Int) 가 얼마인가?
+
+                    val codeNum = jsonObj.getInt("code")
+
+//                    연습-활용 : codeNum 200이면, 로그인 성공. 아니면 로그인 실패. 로그 찍기
+
+                    if (codeNum == 200) {
+                        Log.d("로그인결과", "성공")
+                    }
+                    else {
+                        Log.e("로그인결과", "실패")
+                    }
+
+
                 }
 
             })
