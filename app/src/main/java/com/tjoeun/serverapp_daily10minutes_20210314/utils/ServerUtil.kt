@@ -1,8 +1,8 @@
 package com.tjoeun.serverapp_daily10minutes_20210314.utils
 
-import okhttp3.FormBody
-import okhttp3.OkHttpClient
-import okhttp3.Request
+import android.util.Log
+import okhttp3.*
+import java.io.IOException
 
 class ServerUtil {
 
@@ -45,9 +45,30 @@ class ServerUtil {
 
             val client = OkHttpClient()
 
-//            클라이언트가 실제 리퀘스트 수행.
+//            클라이언트가 실제 리퀘스트 수행. (newCall)
+//            서버에 다녀와서, 서버가 하는 말 (응답-Response / CallBack)을 처리하는 코드 같이 작성.
 
-            client.newCall(request)
+            client.newCall(request).enqueue(object : Callback {
+                override fun onFailure(call: Call, e: IOException) {
+//                    서버 연결 자체를 실패.
+//                    데이터 소진, 서버가 터짐 등등의 사유로 아예 연결 실패.
+
+//                    반대 - 로그인 비번 틀림(실패), 회원가입(이메일중복 실패) => 연결은 성공, 결과만 실패.
+//                    여기서 실행되지 않는다.
+                }
+
+                override fun onResponse(call: Call, response: Response) {
+//                    서버의 응답을 받아낸 경우.
+//                    응답(Response) > 내부의 본문(body)만 활용. > String 형태로 저장.
+
+//                    toString() X , string() 활용
+                    val bodyString = response.body!!.string()
+
+                    Log.d("서버응답본문", bodyString)
+
+                }
+
+            })
 
         }
 
