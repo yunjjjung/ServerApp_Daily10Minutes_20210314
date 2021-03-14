@@ -2,6 +2,7 @@ package com.tjoeun.serverapp_daily10minutes_20210314.utils
 
 import android.util.Log
 import okhttp3.*
+import org.json.JSONObject
 import java.io.IOException
 
 class ServerUtil {
@@ -64,7 +65,11 @@ class ServerUtil {
 //                    toString() X , string() 활용
                     val bodyString = response.body!!.string()
 
-                    Log.d("서버응답본문", bodyString)
+//                    bodyString은, 인코딩 된 상태라 읽기가 어렵다. (한글 깨짐)
+//                    bodyString을 > JSONObject 으로 변환시키면 > 읽을 수 있게됨.
+
+                    val jsonObj = JSONObject(bodyString)
+                    Log.d("서버응답본문", jsonObj.toString())
 
                 }
 
