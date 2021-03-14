@@ -29,7 +29,7 @@ class ServerUtil {
 
 //        함수 작성 - 로그인 기능 담당 함수.
 
-        fun postRequestLogin(id : String, pw : String) {
+        fun postRequestLogin(id : String, pw : String, handler : JsonResponseHandler?) {
 
 //            실제 기능 수행 주소 ex. 로그인 - http://15.164.153.174/user
 //            HOST_URL/user => 최종 주소 완성.
@@ -78,24 +78,10 @@ class ServerUtil {
                     val jsonObj = JSONObject(bodyString)
                     Log.d("서버응답본문", jsonObj.toString())
 
-//                    연습 : code 에 적힌 숫자 (Int) 가 얼마인가?
+//                    실제 : 응답 처리 코드는 => 화면에서 작성하도록 미루자.
+//                    화면에 적힌 행동 방침을 그대로 실행.
 
-                    val codeNum = jsonObj.getInt("code")
-
-//                    연습-활용 : codeNum 200이면, 로그인 성공. 아니면 로그인 실패. 로그 찍기
-//                    로그인에 실패시 => 서버에서 알려주는 실패 사유를 로그로 찍자.
-
-                    if (codeNum == 200) {
-                        Log.d("로그인결과", "성공")
-                    }
-                    else {
-                        Log.e("로그인결과", "실패")
-
-//                        추가로, message로 달려있는 String 을 추출.
-                        val msgStr = jsonObj.getString("message")
-                        Log.e("로그인실패사유", msgStr)
-
-                    }
+                    handler?.onResponse(jsonObj)
 
 
                 }

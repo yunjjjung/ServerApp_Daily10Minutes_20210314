@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.tjoeun.serverapp_daily10minutes_20210314.utils.ServerUtil
 import kotlinx.android.synthetic.main.activity_main.*
+import org.json.JSONObject
 
 class MainActivity : BaseActivity() {
 
@@ -24,7 +25,12 @@ class MainActivity : BaseActivity() {
 
 //            이 아이디/비번이 회원이 맞는지, 서버에 확인 요청. => 로그인 요청.
 
-            ServerUtil.postRequestLogin(inputId, inputPw)
+            ServerUtil.postRequestLogin(inputId, inputPw, object : ServerUtil.JsonResponseHandler {
+                override fun onResponse(json: JSONObject) {
+//                    JSON 파싱 -> UI 반영 코드 작성 영역
+                }
+
+            })
 
         }
 
