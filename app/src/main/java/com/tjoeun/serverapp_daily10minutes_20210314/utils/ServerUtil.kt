@@ -10,6 +10,13 @@ class ServerUtil {
 //    API를 호출해주는 함수들을 모아두기 위한 클래스. (코드 정리 차원)
 
 
+//    화면(액티비티의) 입장에서, 서버에 다녀오면 할 행동을 적는 행동 지침.
+//    행동 지침을 전달하는 방식 : Interface
+
+    interface JsonResponseHandler {
+        fun onResponse(json : JSONObject)
+    }
+
 
 //    ServerUtil.함수() 처럼, 클래스이름. 만 해도 바로 사용하게 도와주는 코드.
 //    JAVA - static 개념에 대응되는 코드.
