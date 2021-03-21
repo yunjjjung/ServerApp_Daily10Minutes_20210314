@@ -161,8 +161,33 @@ class ServerUtil {
 //            최종형태 : 어디로?URL + 어떤?파라미터가 전부 결합된 주소.
             val urlString = urlBuilder.build().toString()
 
-//            임시 : 완성된 주소 로그 확인.
-            Log.d("GET-이메일확인주소", urlString)
+//            요청 정보 종합
+
+            val request = Request.Builder()
+                .url(urlString)
+                .get()
+                .build()
+
+//            실제 호출 client 변수
+
+            val client = OkHttpClient()
+
+            client.newCall(request).enqueue(object : Callback {
+                override fun onFailure(call: Call, e: IOException) {
+
+                }
+
+                override fun onResponse(call: Call, response: Response) {
+
+                    val bodyString = response.body!!.string()
+                    val jsonObj = JSONObject(bodyString)
+                    Log.d("서버응답본문", jsonObj.toString())
+                    handler?.onResponse(jsonObj)
+
+                }
+
+            })
+
 
         }
 
