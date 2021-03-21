@@ -68,6 +68,14 @@ class MainActivity : BaseActivity() {
 
                 }
 
+//                for문 끝나면 => 모든 프로젝트가 목록에 추가된 상태.
+//                목록 변경이 생겼으니 => 어댑터 새로고침 (UI 변경) 필요
+
+                runOnUiThread {
+                    mAdapter.notifyDataSetChanged()
+                }
+
+
             }
 
         } )
