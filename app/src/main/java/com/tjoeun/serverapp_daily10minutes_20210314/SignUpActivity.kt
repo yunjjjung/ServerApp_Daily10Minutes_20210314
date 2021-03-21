@@ -40,8 +40,15 @@ class SignUpActivity : BaseActivity() {
                     runOnUiThread {
 
                         if (code == 200) {
+
 //                            가입한 사람의 이름을 추출해서, 환영 메세지
-                            Toast.makeText(mContext, "??님 환영합니다.", Toast.LENGTH_SHORT).show()
+//                            json > data { } > user { } > "nick_name" String 추출.
+
+                            val dataObj = json.getJSONObject("data")
+                            val userObj = dataObj.getJSONObject("user")
+                            val userName = userObj.getString("nick_name")
+
+                            Toast.makeText(mContext, "${userName}님 환영합니다.", Toast.LENGTH_SHORT).show()
 
                             finish()
                         } else {
