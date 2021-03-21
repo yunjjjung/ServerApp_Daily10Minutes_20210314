@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.TextView
+import com.bumptech.glide.Glide
 import com.tjoeun.serverapp_daily10minutes_20210314.R
 import com.tjoeun.serverapp_daily10minutes_20210314.datas.Project
 
@@ -34,6 +35,8 @@ class ProjectAdapter(
 
         val projectImg = row.findViewById<ImageView>(R.id.projectImg)
         val projectTitleTxt = row.findViewById<TextView>(R.id.projectTitleTxt)
+
+        Glide.with(mContext).load(data.imageURL).into(projectImg)
 
         projectTitleTxt.text = data.title
 
