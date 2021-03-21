@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import com.tjoeun.serverapp_daily10minutes_20210314.utils.ContextUtil
 import com.tjoeun.serverapp_daily10minutes_20210314.utils.ServerUtil
 import kotlinx.android.synthetic.main.activity_login.*
 import org.json.JSONObject
@@ -27,8 +28,7 @@ class LoginActivity : BaseActivity() {
 
 //            체크 된 값을 SharedPreferences에 기록, 앱이 다시 켜질때 => 체크 여부 반영.
 
-
-
+            ContextUtil.setAutoLogin(mContext, isChecked)
 
             if (isChecked) {
 //                지금 체크로 찍혔다.
@@ -98,6 +98,10 @@ class LoginActivity : BaseActivity() {
     }
 
     override fun setValues() {
+
+//        저장된 자동로그인 여부를 불러와서 => 체크박스에 반영.
+
+        autoLoginCheckBox.isChecked = ContextUtil.getAutoLogin(mContext)
 
     }
 

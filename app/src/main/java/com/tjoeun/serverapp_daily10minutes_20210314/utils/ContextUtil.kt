@@ -23,6 +23,17 @@ class ContextUtil {
 
         }
 
+//        자동로그인 저장값 확인 기능.
+
+        fun getAutoLogin(context: Context) : Boolean {
+
+//            메모장 파일을 열어보자.
+            val pref = context.getSharedPreferences(prefName, Context.MODE_PRIVATE)
+//            자동로그인 항목에 저장된 값을 결과로 리턴.
+            return pref.getBoolean(IS_AUTO_LOGIN, false)
+
+        }
+
     }
 
 }
