@@ -2,6 +2,7 @@ package com.tjoeun.serverapp_daily10minutes_20210314.utils
 
 import android.util.Log
 import okhttp3.*
+import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
 import org.json.JSONObject
 import java.io.IOException
 
@@ -145,6 +146,23 @@ class ServerUtil {
 //        이메일 중복여부 체크 함수
 
         fun getRequestEmailCheck(email: String, handler: JsonResponseHandler?) {
+
+//            어디로? + 어떤 데이터? => URL을 적을때 같이 완성되어야한다.
+
+//            주소가 복잡해짐. => 복잡한 가공을 도와주는 클래스 활용. => URLBuilder
+
+//            http://15.~~/email_check 의 뒤에, 파라미터를 쉽게 첨부하도록 도와주는 변수.
+            val urlBuilder = "${HOST_URL}/email_check".toHttpUrlOrNull()!!.newBuilder()
+
+//            필요한 파라미터를 url에 붙이자.
+            urlBuilder.addEncodedQueryParameter("email", email)
+
+//            필요한 파라미터가 다 붙었으면, 최종 형태 String으로 완성.
+//            최종형태 : 어디로?URL + 어떤?파라미터가 전부 결합된 주소.
+            val urlString = urlBuilder.build().toString()
+
+//            임시 : 완성된 주소 로그 확인.
+            Log.d("GET-이메일확인주소", urlString)
 
         }
 

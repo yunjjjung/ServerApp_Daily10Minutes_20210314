@@ -26,6 +26,14 @@ class SignUpActivity : BaseActivity() {
 
 //            서버에 -> /email_check 로 중복확인 요청. -> ServerUtil에 함수 추가 필요.
 
+            ServerUtil.getRequestEmailCheck(inputEmail, object : ServerUtil.JsonResponseHandler {
+
+                override fun onResponse(json: JSONObject) {
+
+                }
+
+            } )
+
         }
 
         signUpBtn.setOnClickListener {
