@@ -2,6 +2,7 @@ package com.tjoeun.serverapp_daily10minutes_20210314
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import com.tjoeun.serverapp_daily10minutes_20210314.datas.Project
 import com.tjoeun.serverapp_daily10minutes_20210314.utils.ServerUtil
 import org.json.JSONObject
@@ -36,7 +37,11 @@ class MainActivity : BaseActivity() {
                 val projectsArr = dataObj.getJSONArray("projects")
 
 //                projects [  ]  => 이름표가 아니라, 순서대로 하나씩 추출.
-//                첫번째 ~ 마지막까지 반복적으로 하나씩 추출. => Kotlin 반복문 활용.
+//                첫번째 [0] ~ 마지막 [갯수직전] 까지 반복적으로 하나씩 추출. => Kotlin 반복문 활용.
+
+                for (i  in   0 until projectsArr.length()) {
+                    Log.d("프로젝트목록반복", "${i}번째")
+                }
 
             }
 
