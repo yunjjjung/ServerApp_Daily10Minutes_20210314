@@ -40,7 +40,24 @@ class MainActivity : BaseActivity() {
 //                첫번째 [0] ~ 마지막 [갯수직전] 까지 반복적으로 하나씩 추출. => Kotlin 반복문 활용.
 
                 for (i  in   0 until projectsArr.length()) {
-                    Log.d("프로젝트목록반복", "${i}번째")
+
+//                    프로젝트 정보를 0~끝까지 projectsArr에서 꺼내서 파싱.
+
+//                    {  } 프로젝트 정보 덩어리 JSONObject 추출
+                    val projectObj = projectsArr.getJSONObject(i)
+
+//                    projectObj > Project 클래스 형태로 가공.
+                    val project = Project()
+
+//                    {  } 내부의 데이터를 => 데이터클래스의 변수에 옮겨적자.
+                    project.id = projectObj.getInt("id")
+                    project.title = projectObj.getString("title")
+//                    왼쪽 변수 : 데이터클래스에 만든 변수 Vs. 오른쪽 이름표 : 서버가 내려주는 이름표.
+                    project.imageURL = projectObj.getString("img_url")
+
+//                    가공된 데이터를 목록에 추가.
+                    mProjectList.add(project)
+
                 }
 
             }
