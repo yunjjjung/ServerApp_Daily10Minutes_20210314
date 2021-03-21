@@ -95,13 +95,7 @@ class ServerUtil {
 
         fun putRequestSignUp(email : String, pw : String, nickname : String, handler: JsonResponseHandler?) {
 
-//            서버에 회원가입 요청 : 어디로? url / 어떤 데이터? 파라미터(formData) / 어떤 방식? PUT
-
-//            어디로? HOST_URL + /user  형태의 주소.
             val urlString = "${HOST_URL}/user"
-
-//            어떤 데이터? 어느 위치에? - 파라미터
-//            모든 파라미터를 formData에 담자.
 
             val formData = FormBody.Builder()
                 .add("email", email)
@@ -109,15 +103,10 @@ class ServerUtil {
                 .add("nick_name", nickname)
                 .build()
 
-
-//            어떤방식? + 모든 정보 종합. => Request 클래스 사용.
-
             val request = Request.Builder()
                 .url(urlString)
                 .put(formData)
                 .build()
-
-//            서버로 가기 위한 준비는 끝. => 실제로 (client 클래스 도움) 출발.
 
             val client = OkHttpClient()
 
@@ -127,14 +116,10 @@ class ServerUtil {
                 }
 
                 override fun onResponse(call: Call, response: Response) {
-//                    응답이 돌아온 경우. => 구체적 처리방안은 화면에 넘기자. + JSON 응답도 넘기자.
-
-//                    응답 > 본문(body) > JSON형태로 변환 > 액티비티에 전달
 
                     val bodyString = response.body!!.string()
                     val jsonObj = JSONObject(bodyString)
                     Log.d("서버응답내용", jsonObj.toString())
-//                    완성된 jsonObj를 화면에서 분석하도록 전달.
                     handler?.onResponse(jsonObj)
 
                 }
@@ -195,28 +180,16 @@ class ServerUtil {
 
         fun getRequestProjectList(handler: JsonResponseHandler?) {
 
-//            어디로? + 어떤 데이터? => URL을 적을때 같이 완성되어야한다.
 
-//            주소가 복잡해짐. => 복잡한 가공을 도와주는 클래스 활용. => URLBuilder
-
-//            http://15.~~/email_check 의 뒤에, 파라미터를 쉽게 첨부하도록 도와주는 변수.
             val urlBuilder = "${HOST_URL}/project".toHttpUrlOrNull()!!.newBuilder()
-
-//            필요한 파라미터를 url에 붙이자.
 //            urlBuilder.addEncodedQueryParameter("email", email)
 
-//            필요한 파라미터가 다 붙었으면, 최종 형태 String으로 완성.
-//            최종형태 : 어디로?URL + 어떤?파라미터가 전부 결합된 주소.
             val urlString = urlBuilder.build().toString()
-
-//            요청 정보 종합
 
             val request = Request.Builder()
                 .url(urlString)
                 .get()
                 .build()
-
-//            실제 호출 client 변수
 
             val client = OkHttpClient()
 
