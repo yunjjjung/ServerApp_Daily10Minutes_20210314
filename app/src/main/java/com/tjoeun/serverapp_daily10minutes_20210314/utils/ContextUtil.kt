@@ -7,10 +7,10 @@ class ContextUtil {
     companion object {
 
 //        메모장 이름에 대응되는 개념. (환경설정 파일 이름)
-        val prefName = "Daily10MinutePref"
+        private val prefName = "Daily10MinutePref"
 
 //        저장할 데이터 항목명 변수들.
-        val IS_AUTO_LOGIN = "IS_AUTO_LOGIN"
+        private val IS_AUTO_LOGIN = "IS_AUTO_LOGIN"
 
 //        자동로그인 여부 저장(set) / 확인(get) 2가지 기능.
 
