@@ -180,7 +180,7 @@ class ServerUtil {
 //        프로젝트 목록 받아오는 함수.
 //        저장된 토큰을 (SharedPreferences-Context재료필요.) 꺼내서 => 서버에 전송. (header)
 
-        fun getRequestProjectList(context : Context, handler: JsonResponseHandler?) {
+        fun getRequestProjectList(context : Context,  handler: JsonResponseHandler?) {
 
 
             val urlBuilder = "${HOST_URL}/project".toHttpUrlOrNull()!!.newBuilder()
