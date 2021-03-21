@@ -25,6 +25,11 @@ class LoginActivity : BaseActivity() {
 
 //            isChecked : 지금 변경된 체크 여부.
 
+//            체크 된 값을 SharedPreferences에 기록, 앱이 다시 켜질때 => 체크 여부 반영.
+
+
+
+
             if (isChecked) {
 //                지금 체크로 찍혔다.
                 Toast.makeText(mContext, "로그인 성공시 자동 로그인 됩니다.", Toast.LENGTH_SHORT).show()
