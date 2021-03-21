@@ -34,6 +34,13 @@
         android:hint="8자리 이상 입력"
         android:inputType="textPassword"/>
 
+
+    <CheckBox
+        android:id="@+id/autoLoginCheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="자동 로그인" />
+
     <Button
         android:id="@+id/loginBtn"
         android:layout_width="match_parent"
