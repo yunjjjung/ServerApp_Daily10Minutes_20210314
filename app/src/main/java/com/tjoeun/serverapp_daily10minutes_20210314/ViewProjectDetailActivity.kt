@@ -1,8 +1,11 @@
 package com.tjoeun.serverapp_daily10minutes_20210314
 
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import android.widget.TextView
 import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.tjoeun.serverapp_daily10minutes_20210314.datas.Project
@@ -181,6 +184,38 @@ class ViewProjectDetailActivity : BaseActivity() {
             giveUpBtn.visibility = View.GONE
 
         }
+
+//        프로젝트 데이터의 해쉬태그 갯수에 따른 UI 처리
+        
+//        갯수 : 0개 - tagsLayout 숨김. 0개 아니면 - tagsLayout 보여주기 + 필요한만큼 텍스트뷰 추가
+
+        if (mProject.hashTags.size == 0) {
+            tagsLayout.visibility = View.GONE
+        }
+        else {
+            tagsLayout.visibility = View.VISIBLE
+
+//            태그의 갯수 만큼, 텍스트뷰를 (tagsLayout에) 추가.
+
+            for (tag  in mProject.hashTags) {
+
+//                xml에 그려두지 않은, 텍스트뷰를 코틀린에서 추가하자.
+//                1) res-layout-xml을 별도로 추가. => LayoutInflater 활용
+//                2) TextView 변수 자체를 생성. (이번에 새로 활용)
+
+                val tagTextView = TextView(mContext)
+                tagTextView.text = "#${tag}"
+
+//                텍스트컬러 지정 => #5555FF COLOR
+                tagTextView.setTextColor(Color.parseColor("#5555FF"))
+
+//                만들어낸 텍스트뷰를 -> tagsLayout에 추가.
+
+                tagsLayout.addView(tagTextView)
+
+            }
+        }
+
     }
 
 }
