@@ -9,6 +9,7 @@
     tools:context=".ViewPhotoActivity">
 
     <com.github.chrisbanes.photoview.PhotoView
+        android:id="@+id/profileImg"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:src="@mipmap/ic_launcher" />
