@@ -17,6 +17,21 @@ class User {
             val userData = User()
 
 //            userData의 변수들에 값 대입
+            userData.id = jsonObj.getInt("id")
+            userData.email = jsonObj.getString("email")
+            userData.nickName = jsonObj.getString("nick_name")
+
+            val pfImgArr = jsonObj.getJSONArray("profile_images")
+
+            for (index  in 0 until pfImgArr.length()) {
+
+                val imgObj = pfImgArr.getJSONObject(index)
+
+                val imgUrl = imgObj.getString("img_url")
+
+                userData.profileImgUrls.add(imgUrl)
+
+            }
 
             return userData
 
