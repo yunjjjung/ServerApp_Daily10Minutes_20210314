@@ -25,7 +25,6 @@ class ViewPhotoActivity : BaseActivity() {
 
         mUser = intent.getSerializableExtra("user") as User
 
-        Glide.with(mContext).load(mUser.profileImgUrls[0]).into(profileImg)
 
     }
 
