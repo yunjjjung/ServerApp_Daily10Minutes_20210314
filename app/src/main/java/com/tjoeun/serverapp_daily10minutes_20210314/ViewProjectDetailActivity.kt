@@ -67,7 +67,7 @@ class ViewProjectDetailActivity : BaseActivity() {
 
 //                            UI상에서도 문구 반영
                             runOnUiThread {
-                                memberCountTxt.text = "${mProject.ongoingUsersCount}명"
+                                refreshUI()
                             }
 
 
@@ -95,6 +95,13 @@ class ViewProjectDetailActivity : BaseActivity() {
 //        들어오는 intent를 통해서 프로젝트 정보 저장.
         mProject = intent.getSerializableExtra("projectInfo") as Project
 
+        refreshUI()
+
+    }
+
+//    서버에서 받은 데이터 (mProject) 를 기반으로 => UI 새로 반영 함수.
+
+    fun refreshUI() {
 //        프로젝트 제목 / 이미지 표시.
         projectTitleTxt.text = mProject.title
         Glide.with(mContext).load(mProject.imageURL).into(projectImg)
@@ -124,7 +131,6 @@ class ViewProjectDetailActivity : BaseActivity() {
             giveUpBtn.visibility = View.GONE
 
         }
-
     }
 
 }
