@@ -9,6 +9,7 @@ class Project : Serializable {
     var title = "" // String 이라는 명시.
     var imageURL = "" // 그림파일 경로 (String) 저장 변수.
     var description = ""
+    var ongoingUsersCount = 0
 
 
 //    기능 추가. JSONObject 하나를 적당히 넣으면 => 함수 내부에서 가공해서 => Project 로 내보내주는 기능.
@@ -26,6 +27,7 @@ class Project : Serializable {
             projectData.title = jsonObj.getString("title")
             projectData.imageURL = jsonObj.getString("img_url")
             projectData.description = jsonObj.getString("description")
+            projectData.ongoingUsersCount = jsonObj.getInt("ongoing_users_count")
 
 //            완성된 projectData가 결과로 나가도록
             return projectData
