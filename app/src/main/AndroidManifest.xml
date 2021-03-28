@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ServerApp_Daily10Minutes_20210314"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ViewMemberListActivity"></activity>
+        <activity android:name=".ViewPhotoActivity"></activity>
+        <activity android:name=".ViewMemberListActivity" />
         <activity android:name=".ViewProjectDetailActivity" />
         <activity
             android:name=".SplashActivity"

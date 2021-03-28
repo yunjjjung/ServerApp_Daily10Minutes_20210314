@@ -1,8 +1,9 @@
 package com.tjoeun.serverapp_daily10minutes_20210314.datas
 
 import org.json.JSONObject
+import java.io.Serializable
 
-class User {
+class User : Serializable {
 
     var id = 0
     var email = ""
