@@ -33,6 +33,19 @@ class ViewMemberListActivity : BaseActivity() {
         ServerUtil.getRequestProjectMembers(mContext, mProject.id, object : ServerUtil.JsonResponseHandler {
             override fun onResponse(json: JSONObject) {
 
+                val dataObj = json.getJSONObject("data")
+                val projectObj = dataObj.getJSONObject("project")
+                val ongoingUsersArr = projectObj.getJSONArray("ongoing_users")
+
+                for (index   in  0 until ongoingUsersArr.length()) {
+
+                    val userObj = ongoingUsersArr.getJSONObject(index)
+                    val userData = User.getUserDataFromJson(userObj)
+
+                    mMemberList.add(userData)
+
+                }
+
             }
 
         })
