@@ -105,14 +105,10 @@ class MainActivity : BaseActivity() {
 //                    {  } 프로젝트 정보 덩어리 JSONObject 추출
                     val projectObj = projectsArr.getJSONObject(i)
 
-//                    projectObj > Project 클래스 형태로 가공.
-                    val project = Project()
 
-//                    {  } 내부의 데이터를 => 데이터클래스의 변수에 옮겨적자.
-                    project.id = projectObj.getInt("id")
-                    project.title = projectObj.getString("title")
-//                    왼쪽 변수 : 데이터클래스에 만든 변수 Vs. 오른쪽 이름표 : 서버가 내려주는 이름표.
-                    project.imageURL = projectObj.getString("img_url")
+//                    projectObj 를 가지고 => Project()로 변환 기능 사용.
+                    val project = Project.getProjectDataFromJson(projectObj)
+
 
 //                    가공된 데이터를 목록에 추가.
                     mProjectList.add(project)
