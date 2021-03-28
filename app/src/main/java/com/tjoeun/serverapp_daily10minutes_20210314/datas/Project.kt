@@ -10,6 +10,7 @@ class Project : Serializable {
     var imageURL = "" // 그림파일 경로 (String) 저장 변수.
     var description = ""
     var ongoingUsersCount = 0
+    var proofMethod = ""
 
     var myLastStatus : String? = null // null이 될 수도 있는 String. 기본값은 null
 
@@ -34,6 +35,8 @@ class Project : Serializable {
             projectData.imageURL = jsonObj.getString("img_url")
             projectData.description = jsonObj.getString("description")
             projectData.ongoingUsersCount = jsonObj.getInt("ongoing_users_count")
+
+            projectData.proofMethod = jsonObj.getString("proof_method")
 
 //            나의참가상태 : JSON에서 null로 담겨있을 수 있다. => null인지 확인하고 동작시켜야 안전함.
             if (!jsonObj.isNull("my_last_status")) {
