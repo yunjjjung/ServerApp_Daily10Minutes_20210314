@@ -106,7 +106,22 @@ class ViewProjectDetailActivity : BaseActivity() {
 //                            참여 신청 API : 어떤 변경사항이 생겼는지 알 수 있도록, 프로젝트 데이터 내려줌.
 //                            포기 API : 프로젝트 데이터 X. => 프로젝트 상태를 새로 조회해서 반영해야함.
 
-                            ServerUtil.getRequestProjectDetail(mContext, mProject.id, null)
+                            ServerUtil.getRequestProjectDetail(mContext, mProject.id, object : ServerUtil.JsonResponseHandler {
+                                override fun onResponse(json: JSONObject) {
+
+                                    val dataObj = json.getJSONObject("data")
+                                    val projectObj = dataObj.getJSONObject("project")
+
+                                    val projectData = Project.getProjectDataFromJson(projectObj)
+
+                                    mProject = projectData
+
+                                    runOnUiThread {
+                                        refreshUI()
+                                    }
+
+                                }
+                            })
 
                         } else {
                             val message = json.getString("message")

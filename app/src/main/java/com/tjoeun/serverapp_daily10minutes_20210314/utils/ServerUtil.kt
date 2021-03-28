@@ -291,7 +291,7 @@ class ServerUtil {
 
             val request = Request.Builder()
                 .url(urlString)
-                .get()
+                .delete()
                 .header("X-Http-Token", ContextUtil.getToken(context))
                 .build()
 
@@ -330,8 +330,6 @@ class ServerUtil {
 //            urlBuilder.addEncodedQueryParameter("email", email)
 
             val urlString = urlBuilder.build().toString()
-
-            Log.d("완성된URL", urlString)
 
             val request = Request.Builder()
                 .url(urlString)
