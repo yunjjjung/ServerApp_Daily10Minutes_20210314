@@ -47,7 +47,29 @@ class ViewProjectDetailActivity : BaseActivity() {
                         val code = json.getInt("code")
 
                         if (code == 200) {
-//                        정상 신청 완료
+//                        정상 신청 완료 => 서버가 최신 상태값 다시 내려줌. => 다시 파싱해서 UI 반영.
+
+//                            신청시 처리방안
+//                            1) 참여 인원수 재확인 (서버에서 다시 확인)
+//                            2) 신청하기 버튼 대신, 포기하기 버튼으로 대체.
+
+                            val dataObj = json.getJSONObject("data")
+                            val projectObj = dataObj.getJSONObject("project")
+
+//                            projectObj 하나의 프로젝트 정보를 담고있는 JSONObject.
+//                            Project 클래스의 파싱 기능에 집어넣기 적당함.
+
+                            val projectData = Project.getProjectDataFromJson(projectObj)
+
+//                            화면에 뿌려지는 프로젝트 : mProject 갱신
+                            mProject = projectData
+
+//                            UI상에서도 문구 반영
+                            runOnUiThread {
+                                memberCountTxt.text = "${mProject.ongoingUsersCount}명"
+                            }
+
+
                         } else {
 //                        여타 이유로 실패.
                             val message = json.getString("message")
