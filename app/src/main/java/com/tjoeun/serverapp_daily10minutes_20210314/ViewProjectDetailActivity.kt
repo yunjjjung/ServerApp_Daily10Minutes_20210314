@@ -88,6 +88,39 @@ class ViewProjectDetailActivity : BaseActivity() {
 
         }
 
+//        중도포기 버튼 눌리면 => 포기 API 호출 => UI 새로고침
+
+        giveUpBtn.setOnClickListener {
+
+            ServerUtil.deleteRequestGiveUpProject(
+                mContext,
+                mProject.id,
+                object : ServerUtil.JsonResponseHandler {
+
+                    override fun onResponse(json: JSONObject) {
+
+                        val code = json.getInt("code")
+
+                        if (code == 200) {
+
+//                            참여 신청 API : 어떤 변경사항이 생겼는지 알 수 있도록, 프로젝트 데이터 내려줌.
+//                            포기 API : 프로젝트 데이터 X. => 프로젝트 상태를 새로 조회해서 반영해야함.
+
+                        } else {
+                            val message = json.getString("message")
+                            runOnUiThread {
+
+                                Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show()
+
+                            }
+                        }
+
+                    }
+
+                })
+
+        }
+
     }
 
     override fun setValues() {
