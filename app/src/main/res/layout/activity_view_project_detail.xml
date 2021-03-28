@@ -131,5 +131,11 @@
         android:layout_margin="10dp"
         android:text="중도 포기하기" />
 
+    <Button
+        android:id="@+id/viewMemberBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="참여중인 인원 보러가기" />
 
 </LinearLayout>

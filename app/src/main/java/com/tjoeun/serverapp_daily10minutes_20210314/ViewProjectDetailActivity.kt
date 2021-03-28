@@ -1,5 +1,6 @@
 package com.tjoeun.serverapp_daily10minutes_20210314
 
+import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -138,6 +139,16 @@ class ViewProjectDetailActivity : BaseActivity() {
                     }
 
                 })
+
+        }
+
+//        참여인원 보기 누르면 => 프로젝트 정보를 들고 => 멤버리스트화면으로 이동
+
+        viewMemberBtn.setOnClickListener {
+
+            val myIntent = Intent(mContext, ViewMemberListActivity::class.java)
+            myIntent.putExtra("project", mProject)
+            startActivity(myIntent)
 
         }
 
