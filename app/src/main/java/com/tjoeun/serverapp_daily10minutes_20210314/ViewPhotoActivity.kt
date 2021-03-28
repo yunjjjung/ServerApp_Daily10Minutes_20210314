@@ -3,12 +3,15 @@ package com.tjoeun.serverapp_daily10minutes_20210314
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.bumptech.glide.Glide
+import com.tjoeun.serverapp_daily10minutes_20210314.adapters.PhotoViewPagerAdapter
 import com.tjoeun.serverapp_daily10minutes_20210314.datas.User
 import kotlinx.android.synthetic.main.activity_view_photo.*
 
 class ViewPhotoActivity : BaseActivity() {
 
     lateinit var mUser : User
+
+    lateinit var mPhotoAdapter : PhotoViewPagerAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,6 +28,8 @@ class ViewPhotoActivity : BaseActivity() {
 
         mUser = intent.getSerializableExtra("user") as User
 
+        mPhotoAdapter = PhotoViewPagerAdapter(supportFragmentManager, mUser.profileImgUrls)
+        profilePhotoViewPager.adapter = mPhotoAdapter
 
     }
 
