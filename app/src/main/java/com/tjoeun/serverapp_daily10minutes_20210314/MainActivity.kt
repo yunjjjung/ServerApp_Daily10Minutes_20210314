@@ -28,6 +28,21 @@ class MainActivity : BaseActivity() {
 
     override fun setupEvents() {
 
+//        프로젝트 목록을 누르면 => 상세화면으로 이동
+        projectListView.setOnItemClickListener { parent, view, position, id ->
+
+//            어떤 프로젝트가 클릭되었나?
+
+            val clickedProject = mProjectList[position]
+
+//            프로젝트 정보를 통째로 들고 => 상세화면으로 이동
+
+            val myIntent = Intent(mContext, ViewProjectDetailActivity::class.java)
+            myIntent.putExtra("projectInfo", clickedProject)
+            startActivity(myIntent)
+
+        }
+
         logoutBtn.setOnClickListener {
 
 //          [연습문제]  정말 로그아웃 하시겠습니까? 얼럿 띄우고 => OK 인 경우에만 로그아웃.
