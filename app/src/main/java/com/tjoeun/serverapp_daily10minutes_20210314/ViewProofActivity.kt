@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.DatePicker
 import kotlinx.android.synthetic.main.activity_view_proof.*
+import java.text.SimpleDateFormat
 import java.util.*
 
 class ViewProofActivity : BaseActivity() {
@@ -53,7 +54,15 @@ class ViewProofActivity : BaseActivity() {
 //        인증 확인 날짜에 현재 일자를 반영해보자.
 
 //        Calendar변수의 get 기능 활용 예시
-        dateTxt.text = "${mProofDate.get(Calendar.YEAR)}-${mProofDate.get(Calendar.MONTH)+1}-${mProofDate.get(Calendar.DAY_OF_MONTH)}"
+//        dateTxt.text = "${mProofDate.get(Calendar.YEAR)}-${mProofDate.get(Calendar.MONTH)+1}-${mProofDate.get(Calendar.DAY_OF_MONTH)}"
+
+//        SimpleDateFormat 클래스 활용 예시
+
+//        가공해줄 양식 지정.
+        val sdf = SimpleDateFormat("yyyy년 M월 d일")
+
+        dateTxt.text = sdf.format(mProofDate.time)
+
 
     }
 
