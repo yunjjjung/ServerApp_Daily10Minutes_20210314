@@ -51,12 +51,18 @@ class MainActivity : BaseActivity() {
 //                읽을 알림이 없다 : 빨간 동그라미 숨김
 //                읽을게 하나라도 있다 : 빨간 동그라미 + 4 등의 숫자 겹침.
 
-                if (unreadNotiCount == 0) {
-
+                runOnUiThread {
+                    if (unreadNotiCount == 0) {
+                        notiCountTxt.visibility = View.GONE
+                    }
+                    else {
+                        notiCountTxt.visibility = View.VISIBLE
+//                    몇개인지 숫자도 반영.
+                        notiCountTxt.text = unreadNotiCount.toString()
+                    }
                 }
-                else {
 
-                }
+
 
             }
 

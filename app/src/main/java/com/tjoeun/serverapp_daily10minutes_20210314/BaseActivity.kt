@@ -2,6 +2,7 @@ package com.tjoeun.serverapp_daily10minutes_20210314
 
 import android.os.Bundle
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
@@ -14,6 +15,7 @@ abstract class BaseActivity : AppCompatActivity() {
 //    만드는건 멤버변수 > 대입은 커스텀액션바완성 이후에 가능. (나중에 가능)
     lateinit var backImg : ImageView
     lateinit var notiImg : ImageView
+    lateinit var notiCountTxt : TextView
 
     val mContext = this
 
@@ -84,6 +86,8 @@ abstract class BaseActivity : AppCompatActivity() {
         notiImg.setOnClickListener {
             Toast.makeText(mContext, "알림을 보러 가야합니다.", Toast.LENGTH_SHORT).show()
         }
+
+        notiCountTxt = defaultActionBar.customView.findViewById(R.id.notiCountTxt)
 
     }
 
