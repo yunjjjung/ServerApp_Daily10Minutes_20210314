@@ -132,6 +132,13 @@
         android:text="중도 포기하기" />
 
     <Button
+        android:id="@+id/viewProofBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="인증 게시글 보러가기"
+        android:layout_margin="10dp"/>
+
+    <Button
         android:id="@+id/viewMemberBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
