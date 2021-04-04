@@ -9,6 +9,13 @@
 <!--   FrameLayout : 액션바는 모양의 변동이 잦은편. -->
 
     <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="10dp"
+        android:src="@drawable/back_arrow" />
+
+    <ImageView
         android:layout_width="120dp"
         android:layout_height="40dp"
         android:layout_gravity="center"
