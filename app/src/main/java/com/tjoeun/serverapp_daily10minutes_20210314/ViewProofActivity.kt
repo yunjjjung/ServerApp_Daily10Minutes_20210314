@@ -4,6 +4,7 @@ import android.app.DatePickerDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.DatePicker
+import com.tjoeun.serverapp_daily10minutes_20210314.adapters.ProofAdapter
 import com.tjoeun.serverapp_daily10minutes_20210314.datas.Project
 import com.tjoeun.serverapp_daily10minutes_20210314.datas.Proof
 import com.tjoeun.serverapp_daily10minutes_20210314.utils.ServerUtil
@@ -17,6 +18,8 @@ class ViewProofActivity : BaseActivity() {
 
 //    인증글 목록이 담길 ArrayList
     val mProofList = ArrayList<Proof>()
+
+    lateinit var mProofAdapter : ProofAdapter
 
 //    인증 확인하려는 날짜를 Calendar 형태로 저장해두자.
     val mProofDate = Calendar.getInstance()
@@ -100,6 +103,10 @@ class ViewProofActivity : BaseActivity() {
                     mProofList.add(proofData)
                 }
 
+                runOnUiThread {
+                    mProofAdapter.notifyDataSetChanged()
+                }
+
             }
 
         })
@@ -124,6 +131,10 @@ class ViewProofActivity : BaseActivity() {
 
         dateTxt.text = sdf.format(mProofDate.time)
 
+
+//        리스트뷰 / 어댑터 연결
+        mProofAdapter = ProofAdapter(mContext, R.layout.proof_list_item, mProofList)
+        proofListView.adapter = mProofAdapter
 
     }
 
