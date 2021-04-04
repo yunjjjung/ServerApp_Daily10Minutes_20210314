@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ServerApp_Daily10Minutes_20210314"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ViewProofActivity"></activity>
+        <activity android:name=".EditProofActivity"></activity>
+        <activity android:name=".ViewProofActivity" />
         <activity
             android:name=".ViewPhotoActivity"
             android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar" />
