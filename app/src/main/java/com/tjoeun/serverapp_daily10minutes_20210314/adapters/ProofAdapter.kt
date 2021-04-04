@@ -16,6 +16,7 @@ import com.tjoeun.serverapp_daily10minutes_20210314.ViewPhotoActivity
 import com.tjoeun.serverapp_daily10minutes_20210314.datas.Project
 import com.tjoeun.serverapp_daily10minutes_20210314.datas.Proof
 import com.tjoeun.serverapp_daily10minutes_20210314.datas.User
+import java.text.SimpleDateFormat
 
 class ProofAdapter(
     val mContext : Context,
@@ -48,6 +49,9 @@ class ProofAdapter(
 
         Glide.with(mContext).load(data.writer.profileImgUrls[0]).into(writerProfileImg)
         writerNicknameTxt.text = data.writer.nickName
+
+        val sdf = SimpleDateFormat("yyyy-MM-dd\na H:mm")
+        proofDateTimeTxt.text = sdf.format(data.proofDateTime.time)
 
         return row
     }
