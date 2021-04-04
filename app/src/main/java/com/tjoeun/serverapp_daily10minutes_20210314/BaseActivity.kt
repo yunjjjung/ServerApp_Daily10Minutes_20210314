@@ -1,6 +1,8 @@
 package com.tjoeun.serverapp_daily10minutes_20210314
 
+import android.os.Bundle
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -16,6 +18,27 @@ abstract class BaseActivity : AppCompatActivity() {
 
     abstract fun setupEvents()
     abstract fun setValues()
+
+//    이 클래스에서 onCreate의 내용을 수정 (오버라이딩)하면
+//    자녀들이 가진 (모든 화면에서 가진) super.onCreate 에서 동작됨.
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+//        모든 화면은 만들어질때 액션바 커스터마이징 실행.
+//        액션바가 존재하는 화면에서만 => 커스터마이징도 진행.
+
+        supportActionBar?.let {
+
+//            기본 액션바가 실제로 존재할때 (let의 역할)만, 커스터마이징 진행.
+            setCustomActionBar()
+
+        }
+
+
+    }
+
+
 
 //    이 클래스는 다른 모든 액티비티의 부모로 동작.
 //    이 클래스에 적힌 변수/함수는 다른 모든 액티비티가 물려받게 된다.
