@@ -33,6 +33,16 @@ class ViewProofActivity : BaseActivity() {
 
 //                    연 / 월 / 일을 가지고 처리할 코드 작성.
 
+//                    1. 확인할 인증날짜를 변경 (mProofDate 반영)
+
+                    mProofDate.set(year, month, dayOfMonth)
+
+//                    2. 텍스트뷰에 선택한 날짜 찍어주기
+
+                    val sdf = SimpleDateFormat("yyyy년 M월 d일")
+                    dateTxt.text = sdf.format(mProofDate.time)
+
+
                 }
 
             }
