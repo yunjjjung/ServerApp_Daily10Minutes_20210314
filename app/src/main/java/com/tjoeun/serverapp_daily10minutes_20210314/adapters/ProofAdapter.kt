@@ -46,7 +46,8 @@ class ProofAdapter(
 
         contentTxt.text = data.content
 
-
+        Glide.with(mContext).load(data.writer.profileImgUrls[0]).into(writerProfileImg)
+        writerNicknameTxt.text = data.writer.nickName
 
         return row
     }
