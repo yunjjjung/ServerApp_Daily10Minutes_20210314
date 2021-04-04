@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
@@ -32,6 +33,19 @@ class ProofAdapter(
         }
 
         val row = tempRow!!
+
+        val data = mList[position]
+
+        val writerProfileImg = row.findViewById<ImageView>(R.id.writerProfileImg)
+        val writerNicknameTxt = row.findViewById<TextView>(R.id.writerNicknameTxt)
+        val proofDateTimeTxt = row.findViewById<TextView>(R.id.proofDateTimeTxt)
+        val contentTxt = row.findViewById<TextView>(R.id.contentTxt)
+        val proofImg = row.findViewById<ImageView>(R.id.proofImg)
+        val likeBtn = row.findViewById<Button>(R.id.likeBtn)
+        val replyBtn = row.findViewById<Button>(R.id.replyBtn)
+
+        contentTxt.text = data.content
+
 
 
         return row

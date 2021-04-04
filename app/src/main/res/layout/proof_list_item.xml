@@ -18,12 +18,14 @@
             android:orientation="horizontal">
 
             <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/writerProfileImg"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:src="@mipmap/ic_launcher"
                 app:civ_border_width="2dp"/>
 
             <TextView
+                android:id="@+id/writerNicknameTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="작성자닉네임"
@@ -37,6 +39,7 @@
                 android:layout_weight="1" />
 
             <TextView
+                android:id="@+id/proofDateTimeTxt"
                 android:gravity="right"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -51,6 +54,7 @@
             android:background="#A0A0A0" />
 
         <TextView
+            android:id="@+id/contentTxt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -58,6 +62,7 @@
             android:text="게시글 내용.... 길게 적힐 수 있습니다." />
 
         <ImageView
+            android:id="@+id/proofImg"
             android:layout_width="match_parent"
             android:layout_height="250dp"
             android:src="@mipmap/ic_launcher"
@@ -70,12 +75,14 @@
             android:orientation="horizontal">
 
             <Button
+                android:id="@+id/likeBtn"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="좋아요 n개"/>
 
             <Button
+                android:id="@+id/replyBtn"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
