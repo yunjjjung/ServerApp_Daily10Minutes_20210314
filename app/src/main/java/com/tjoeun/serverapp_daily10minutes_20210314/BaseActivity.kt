@@ -1,5 +1,6 @@
 package com.tjoeun.serverapp_daily10minutes_20210314
 
+import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 
 abstract class BaseActivity : AppCompatActivity() {
@@ -21,6 +22,15 @@ abstract class BaseActivity : AppCompatActivity() {
 //         => 모양 : layout - xml 작성하자.
 
 //        2. 기본 액션바를 불러내서 => 커스텀 액션바로 교체 작업.
+
+//        기존에 달려있는 기본 액션바 불러내기. (무조건 있다고 전제)
+        val defaultActionBar = supportActionBar!!
+
+//        기존 액션바의 모드 변경 => 커스텀 액션바 모드로 변경.
+        defaultActionBar.displayOptions = ActionBar.DISPLAY_SHOW_CUSTOM
+
+//        실제로 보여줄 커스텀 화면 지정. (my_custom_action_bar)
+        defaultActionBar.setCustomView(R.layout.my_custom_action_bar)
 
     }
 
