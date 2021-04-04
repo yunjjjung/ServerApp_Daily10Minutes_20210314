@@ -5,8 +5,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.DatePicker
 import kotlinx.android.synthetic.main.activity_view_proof.*
+import java.util.*
 
 class ViewProofActivity : BaseActivity() {
+
+//    인증 확인하려는 날짜를 Calendar 형태로 저장해두자.
+    val mProofDate = Calendar.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +39,7 @@ class ViewProofActivity : BaseActivity() {
 //            2. 그 가이드북을 들고, 실제로 날짜를 선택하러 가기. (날짜 선택용 팝업창 띄우기)
 
             val datePickerDialog = DatePickerDialog(mContext, dateSetListener,
-                2021, 4, 4)
+                2021, Calendar.APRIL, 4)
 
             datePickerDialog.show()
 
@@ -44,6 +48,12 @@ class ViewProofActivity : BaseActivity() {
     }
 
     override fun setValues() {
+
+//        mProofDate에는 기본적으로 현재 일시가 기록되어있다.
+//        인증 확인 날짜에 현재 일자를 반영해보자.
+
+//        Calendar변수의 get 기능 활용 예시
+        dateTxt.text = "${mProofDate.get(Calendar.YEAR)}-${mProofDate.get(Calendar.MONTH)+1}-${mProofDate.get(Calendar.DAY_OF_MONTH)}"
 
     }
 
