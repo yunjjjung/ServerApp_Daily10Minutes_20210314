@@ -2,6 +2,7 @@ package com.tjoeun.serverapp_daily10minutes_20210314
 
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 
 abstract class BaseActivity : AppCompatActivity() {
 
@@ -31,6 +32,16 @@ abstract class BaseActivity : AppCompatActivity() {
 
 //        실제로 보여줄 커스텀 화면 지정. (my_custom_action_bar)
         defaultActionBar.setCustomView(R.layout.my_custom_action_bar)
+
+
+//        좌우 여백을 제거해야 함.
+//        여백을 없애려면? => 액션바의 부모인 툴바 여백 제거 (내부 공간 0으로 설정).
+//        ToolBar : androidx 가 주는걸로 선택
+        val toolBar = defaultActionBar.customView.parent as Toolbar
+        toolBar.setContentInsetsAbsolute(0, 0)
+
+
+
 
     }
 
