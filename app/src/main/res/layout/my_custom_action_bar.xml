@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="60dp">
+
+<!--  여기에 주석 가능  -->
+<!--   FrameLayout : 액션바는 모양의 변동이 잦은편. -->
+
+    <ImageView
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:src="@drawable/google_logo" />
+
+</FrameLayout>
