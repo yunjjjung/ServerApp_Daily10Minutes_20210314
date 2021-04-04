@@ -404,6 +404,43 @@ class ServerUtil {
         }
 
 
+//        새 알림 있는지 확인하는 함수
+
+        fun getRequestNotification(context : Context, needNotiList : Boolean, handler: JsonResponseHandler?) {
+
+
+            val urlBuilder = "${HOST_URL}/notification".toHttpUrlOrNull()!!.newBuilder()
+            urlBuilder.addEncodedQueryParameter("need_all_notis", needNotiList.toString())
+
+            val urlString = urlBuilder.build().toString()
+
+            val request = Request.Builder()
+                    .url(urlString)
+                    .get()
+                    .header("X-Http-Token", ContextUtil.getToken(context))
+                    .build()
+
+            val client = OkHttpClient()
+
+            client.newCall(request).enqueue(object : Callback {
+                override fun onFailure(call: Call, e: IOException) {
+
+                }
+
+                override fun onResponse(call: Call, response: Response) {
+
+                    val bodyString = response.body!!.string()
+                    val jsonObj = JSONObject(bodyString)
+                    Log.d("서버응답본문", jsonObj.toString())
+                    handler?.onResponse(jsonObj)
+
+                }
+
+            })
+
+
+        }
+
     }
 
 }

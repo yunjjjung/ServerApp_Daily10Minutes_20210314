@@ -27,6 +27,43 @@ class MainActivity : BaseActivity() {
         setValues()
     }
 
+    override fun onResume() {
+        super.onResume()
+
+//        이 함수는 메인화면이 나타나려고 할때마다 계속 실행됨.
+//        화면에 돌아올때마다, 새 알림이 있는지 서버에 자동으로 물어보게 하자.
+
+        askNewNotification()
+
+    }
+
+//    새 알림이 있는지 서버에 물어보는 함수
+
+    fun askNewNotification() {
+
+        ServerUtil.getRequestNotification(mContext, false, object : ServerUtil.JsonResponseHandler {
+            override fun onResponse(json: JSONObject) {
+
+                val dataObj = json.getJSONObject("data")
+
+                val unreadNotiCount = dataObj.getInt("unread_noti_count")
+
+//                읽을 알림이 없다 : 빨간 동그라미 숨김
+//                읽을게 하나라도 있다 : 빨간 동그라미 + 4 등의 숫자 겹침.
+
+                if (unreadNotiCount == 0) {
+
+                }
+                else {
+
+                }
+
+            }
+
+        })
+
+    }
+
     override fun setupEvents() {
 
 //        프로젝트 목록을 누르면 => 상세화면으로 이동
