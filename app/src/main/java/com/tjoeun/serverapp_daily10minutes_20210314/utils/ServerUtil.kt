@@ -483,6 +483,70 @@ class ServerUtil {
 
         }
 
+//        프로젝트에 인증글 등록하기
+
+        fun postRequestWriteProof(context: Context, projectId : Int, content : String, handler : JsonResponseHandler?) {
+
+//            실제 기능 수행 주소 ex. 로그인 - http://15.164.153.174/user
+//            HOST_URL/user => 최종 주소 완성.
+
+            val urlString = "${HOST_URL}/project_proof"
+
+//            POST 메쏘드 - formBody에 데이터 첨부.
+            val formData = FormBody.Builder()
+                .add("project_id", projectId.toString())
+                .add("content", content)
+                .build()
+
+//            API 요청(Request)을 어디로 어떻게 할건지 종합하는 변수.
+            val request = Request.Builder()
+                .url(urlString) // 어디로 가는지?
+                .post(formData) // POST방식 - 필요데이터(formData) 들고 가도록
+                .header("X-Http-Token", ContextUtil.getToken(context))
+                .build()
+
+//            startActivity처럼 -> 실제로 Request를 수행하는 코드.
+//            클라이언트로써 동작하도록 도와주는 라이브러리 : OkHttp
+
+            val client = OkHttpClient()
+
+//            클라이언트가 실제 리퀘스트 수행. (newCall)
+//            서버에 다녀와서, 서버가 하는 말 (응답-Response / CallBack)을 처리하는 코드 같이 작성.
+
+            client.newCall(request).enqueue(object : Callback {
+                override fun onFailure(call: Call, e: IOException) {
+//                    서버 연결 자체를 실패.
+//                    데이터 소진, 서버가 터짐 등등의 사유로 아예 연결 실패.
+
+//                    반대 - 로그인 비번 틀림(실패), 회원가입(이메일중복 실패) => 연결은 성공, 결과만 실패.
+//                    여기서 실행되지 않는다.
+                }
+
+                override fun onResponse(call: Call, response: Response) {
+//                    서버의 응답을 받아낸 경우.
+//                    응답(Response) > 내부의 본문(body)만 활용. > String 형태로 저장.
+
+//                    toString() X , string() 활용
+                    val bodyString = response.body!!.string()
+
+//                    bodyString은, 인코딩 된 상태라 읽기가 어렵다. (한글 깨짐)
+//                    bodyString을 > JSONObject 으로 변환시키면 > 읽을 수 있게됨.
+
+                    val jsonObj = JSONObject(bodyString)
+                    Log.d("서버응답본문", jsonObj.toString())
+
+//                    실제 : 응답 처리 코드는 => 화면에서 작성하도록 미루자.
+//                    화면에 적힌 행동 방침을 그대로 실행.
+
+                    handler?.onResponse(jsonObj)
+
+
+                }
+
+            })
+
+        }
+
 
 
     }
