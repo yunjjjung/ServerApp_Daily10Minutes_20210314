@@ -13,6 +13,7 @@ abstract class BaseActivity : AppCompatActivity() {
 //    멤버변수로 UI요소를 만들어둬야, 물려받아서 사용 가능.
 //    만드는건 멤버변수 > 대입은 커스텀액션바완성 이후에 가능. (나중에 가능)
     lateinit var backImg : ImageView
+    lateinit var notiImg : ImageView
 
     val mContext = this
 
@@ -75,6 +76,13 @@ abstract class BaseActivity : AppCompatActivity() {
 
         backImg.setOnClickListener {
             finish()
+        }
+
+
+        notiImg = defaultActionBar.customView.findViewById(R.id.notiImg)
+
+        notiImg.setOnClickListener {
+            Toast.makeText(mContext, "알림을 보러 가야합니다.", Toast.LENGTH_SHORT).show()
         }
 
     }
