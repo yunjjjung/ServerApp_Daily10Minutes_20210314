@@ -1,10 +1,16 @@
 package com.tjoeun.serverapp_daily10minutes_20210314
 
+import android.widget.ImageView
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 
 abstract class BaseActivity : AppCompatActivity() {
+
+//    다른 화면들에서도 커스텀액션바에 달아둔 UI요소들을 사용해야할 경우가 있다.
+//    멤버변수로 UI요소를 만들어둬야, 물려받아서 사용 가능.
+//    만드는건 멤버변수 > 대입은 커스텀액션바완성 이후에 가능. (나중에 가능)
+    lateinit var backImg : ImageView
 
     val mContext = this
 
@@ -41,7 +47,12 @@ abstract class BaseActivity : AppCompatActivity() {
         toolBar.setContentInsetsAbsolute(0, 0)
 
 
+//        뒤로가기 그림을 찾아서 => 클릭되면 현재화면을 종료하는 이벤트 추가.
+        backImg = defaultActionBar.customView.findViewById(R.id.backImg)
 
+        backImg.setOnClickListener {
+            finish()
+        }
 
     }
 
